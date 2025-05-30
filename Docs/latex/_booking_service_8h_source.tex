@@ -1,0 +1,51 @@
+\doxysection{Booking\+Service.\+h}
+\hypertarget{_booking_service_8h_source}{}\label{_booking_service_8h_source}\index{include/BookingService.h@{include/BookingService.h}}
+\mbox{\hyperlink{_booking_service_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_movie}{Movie}}\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_movie_a4265b536373191ad3dfe3057db52ae7a}{id}};}
+\DoxyCodeLine{00023\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_movie_aff8dcdc37d431094bb453b4061b69d1c}{title}};}
+\DoxyCodeLine{00024\ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_theater}{Theater}}\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_theater_a28bbc4ce03ac87ea08935694d3cc62cc}{id}};}
+\DoxyCodeLine{00032\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_theater_a42e5b285d01d654656d591314a5685fa}{name}};}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_booking_service_a3ece42beff47812086a61eecb42abf2e}{BookingService}}\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_booking_service_a3ece42beff47812086a61eecb42abf2e}{BookingService}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \ \ \ \ std::vector<Movie>\ \mbox{\hyperlink{class_booking_service_a73ad81c59aaf85ee6a57cea21601dd21}{viewMovies}}();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00059\ \ \ \ \ std::vector<Theater>\ \mbox{\hyperlink{class_booking_service_afca9a249a29b6c9dac5c9b2a123e577c}{viewTheaters}}(\textcolor{keywordtype}{int}\ movieId);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00068\ \ \ \ \ std::unordered\_map<std::string,\ bool>\ \mbox{\hyperlink{class_booking_service_a1ed00b961df13bb5b26d4f963358c065}{viewSeats}}(\textcolor{keywordtype}{int}\ movieId,\ \textcolor{keywordtype}{int}\ theaterId);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_booking_service_a9a714475f8d8e8ef90b7023f72d9d9a9}{book}}(\textcolor{keywordtype}{int}\ movieId,\ \textcolor{keywordtype}{int}\ theaterId,\ \textcolor{keyword}{const}\ std::vector<std::string>\&\ seats,\ \textcolor{keyword}{const}\ std::string\&\ sessionId);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_booking_service_a9d15cae3878c217e0edcb3ee5b681486}{cancel}}(\textcolor{keywordtype}{int}\ movieId,\ \textcolor{keywordtype}{int}\ theaterId,\ \textcolor{keyword}{const}\ std::vector<std::string>\&\ seats,\ \textcolor{keyword}{const}\ std::string\&\ sessionId);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00097\ \ \ \ \ std::mutex\ mtx\_;\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{struct\ }TheaterSeats\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ std::unordered\_map<std::string,\ bool>\ seatBooked;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ seat\ -\/>\ booked\ or\ not}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ std::unordered\_map<std::string,\ std::string>\ ownerSession;\ \ \ \ \ \textcolor{comment}{//\ seat\ -\/>\ sessionId\ that\ owns\ booking}}
+\DoxyCodeLine{00106\ \ \ \ \ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00111\ \ \ \ \ std::unordered\_map<int,\ std::unordered\_map<int,\ TheaterSeats>>\ data\_;}
+\DoxyCodeLine{00112\ \ \ \ \ std::vector<Movie>\ movies\_;\ }
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ initSampleData();}
+\DoxyCodeLine{00118\ \};}
+
+\end{DoxyCode}

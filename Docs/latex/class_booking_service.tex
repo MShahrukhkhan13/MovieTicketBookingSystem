@@ -1,0 +1,158 @@
+\doxysection{Booking\+Service Class Reference}
+\hypertarget{class_booking_service}{}\label{class_booking_service}\index{BookingService@{BookingService}}
+
+
+Provides the core functionality for movie booking and seat management.  
+
+
+
+
+{\ttfamily \#include $<$Booking\+Service.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_booking_service_a3ece42beff47812086a61eecb42abf2e}{Booking\+Service}} ()
+\begin{DoxyCompactList}\small\item\em Constructs the booking service and loads sample data. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_movie}{Movie}} $>$ \mbox{\hyperlink{class_booking_service_a73ad81c59aaf85ee6a57cea21601dd21}{view\+Movies}} ()
+\begin{DoxyCompactList}\small\item\em Returns the list of all available movies. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_theater}{Theater}} $>$ \mbox{\hyperlink{class_booking_service_afca9a249a29b6c9dac5c9b2a123e577c}{view\+Theaters}} (int movie\+Id)
+\begin{DoxyCompactList}\small\item\em Returns the list of theaters showing a given movie. \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+map$<$ std\+::string, bool $>$ \mbox{\hyperlink{class_booking_service_a1ed00b961df13bb5b26d4f963358c065}{view\+Seats}} (int movie\+Id, int theater\+Id)
+\begin{DoxyCompactList}\small\item\em Returns the availability status of seats for a movie-\/theater pair. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_booking_service_a9a714475f8d8e8ef90b7023f72d9d9a9}{book}} (int movie\+Id, int theater\+Id, const std\+::vector$<$ std\+::string $>$ \&seats, const std\+::string \&session\+Id)
+\begin{DoxyCompactList}\small\item\em Attempts to book the specified seats for a given movie and theater. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_booking_service_a9d15cae3878c217e0edcb3ee5b681486}{cancel}} (int movie\+Id, int theater\+Id, const std\+::vector$<$ std\+::string $>$ \&seats, const std\+::string \&session\+Id)
+\begin{DoxyCompactList}\small\item\em Cancels the booking for the specified seats. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides the core functionality for movie booking and seat management. 
+
+\label{doc-constructors}
+\Hypertarget{class_booking_service_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_booking_service_a3ece42beff47812086a61eecb42abf2e}\index{BookingService@{BookingService}!BookingService@{BookingService}}
+\index{BookingService@{BookingService}!BookingService@{BookingService}}
+\doxysubsubsection{\texorpdfstring{BookingService()}{BookingService()}}
+{\footnotesize\ttfamily \label{class_booking_service_a3ece42beff47812086a61eecb42abf2e} 
+Booking\+Service\+::\+Booking\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructs the booking service and loads sample data. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_booking_service_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_booking_service_a9a714475f8d8e8ef90b7023f72d9d9a9}\index{BookingService@{BookingService}!book@{book}}
+\index{book@{book}!BookingService@{BookingService}}
+\doxysubsubsection{\texorpdfstring{book()}{book()}}
+{\footnotesize\ttfamily \label{class_booking_service_a9a714475f8d8e8ef90b7023f72d9d9a9} 
+bool Booking\+Service\+::book (\begin{DoxyParamCaption}\item[{int}]{movie\+Id}{, }\item[{int}]{theater\+Id}{, }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{seats}{, }\item[{const std\+::string \&}]{session\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Attempts to book the specified seats for a given movie and theater. 
+
+Only books if all seats are available. Associates booking with the session ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em movie\+Id} & The ID of the movie. \\
+\hline
+{\em theater\+Id} & The ID of the theater. \\
+\hline
+{\em seats} & List of seat labels to book. \\
+\hline
+{\em session\+Id} & Session ID of the client booking the seats. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if all seats were booked successfully, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_booking_service_a9d15cae3878c217e0edcb3ee5b681486}\index{BookingService@{BookingService}!cancel@{cancel}}
+\index{cancel@{cancel}!BookingService@{BookingService}}
+\doxysubsubsection{\texorpdfstring{cancel()}{cancel()}}
+{\footnotesize\ttfamily \label{class_booking_service_a9d15cae3878c217e0edcb3ee5b681486} 
+bool Booking\+Service\+::cancel (\begin{DoxyParamCaption}\item[{int}]{movie\+Id}{, }\item[{int}]{theater\+Id}{, }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{seats}{, }\item[{const std\+::string \&}]{session\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Cancels the booking for the specified seats. 
+
+Only the session that originally booked the seats can cancel them.
+
+
+\begin{DoxyParams}{Parameters}
+{\em movie\+Id} & The ID of the movie. \\
+\hline
+{\em theater\+Id} & The ID of the theater. \\
+\hline
+{\em seats} & List of seat labels to cancel. \\
+\hline
+{\em session\+Id} & Session ID of the client requesting the cancellation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if all seats were canceled successfully, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_booking_service_a73ad81c59aaf85ee6a57cea21601dd21}\index{BookingService@{BookingService}!viewMovies@{viewMovies}}
+\index{viewMovies@{viewMovies}!BookingService@{BookingService}}
+\doxysubsubsection{\texorpdfstring{viewMovies()}{viewMovies()}}
+{\footnotesize\ttfamily \label{class_booking_service_a73ad81c59aaf85ee6a57cea21601dd21} 
+std\+::vector$<$ \mbox{\hyperlink{struct_movie}{Movie}} $>$ Booking\+Service\+::view\+Movies (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the list of all available movies. 
+
+\begin{DoxyReturn}{Returns}
+A vector of \doxylink{struct_movie}{Movie} structs. 
+\end{DoxyReturn}
+\Hypertarget{class_booking_service_a1ed00b961df13bb5b26d4f963358c065}\index{BookingService@{BookingService}!viewSeats@{viewSeats}}
+\index{viewSeats@{viewSeats}!BookingService@{BookingService}}
+\doxysubsubsection{\texorpdfstring{viewSeats()}{viewSeats()}}
+{\footnotesize\ttfamily \label{class_booking_service_a1ed00b961df13bb5b26d4f963358c065} 
+std\+::unordered\+\_\+map$<$ std\+::string, bool $>$ Booking\+Service\+::view\+Seats (\begin{DoxyParamCaption}\item[{int}]{movie\+Id}{, }\item[{int}]{theater\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Returns the availability status of seats for a movie-\/theater pair. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em movie\+Id} & The ID of the movie. \\
+\hline
+{\em theater\+Id} & The ID of the theater. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A map of seat labels to availability (true = available, false = booked). 
+\end{DoxyReturn}
+\Hypertarget{class_booking_service_afca9a249a29b6c9dac5c9b2a123e577c}\index{BookingService@{BookingService}!viewTheaters@{viewTheaters}}
+\index{viewTheaters@{viewTheaters}!BookingService@{BookingService}}
+\doxysubsubsection{\texorpdfstring{viewTheaters()}{viewTheaters()}}
+{\footnotesize\ttfamily \label{class_booking_service_afca9a249a29b6c9dac5c9b2a123e577c} 
+std\+::vector$<$ \mbox{\hyperlink{struct_theater}{Theater}} $>$ Booking\+Service\+::view\+Theaters (\begin{DoxyParamCaption}\item[{int}]{movie\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Returns the list of theaters showing a given movie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em movie\+Id} & The ID of the movie. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of \doxylink{struct_theater}{Theater} structs. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_booking_service_8h}{Booking\+Service.\+h}}\item 
+src/\mbox{\hyperlink{_booking_service_8cpp}{Booking\+Service.\+cpp}}\end{DoxyCompactItemize}

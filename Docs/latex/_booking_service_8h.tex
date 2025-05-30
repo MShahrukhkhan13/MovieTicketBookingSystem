@@ -1,0 +1,31 @@
+\doxysection{include/\+Booking\+Service.h File Reference}
+\hypertarget{_booking_service_8h}{}\label{_booking_service_8h}\index{include/BookingService.h@{include/BookingService.h}}
+
+
+Declares the data structures and logic for managing movie booking services.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_movie}{Movie}}
+\begin{DoxyCompactList}\small\item\em Represents a movie with an ID and title. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_theater}{Theater}}
+\begin{DoxyCompactList}\small\item\em Represents a theater with an ID and name. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_booking_service}{Booking\+Service}}
+\begin{DoxyCompactList}\small\item\em Provides the core functionality for movie booking and seat management. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declares the data structures and logic for managing movie booking services. 
+
+Provides functionality to\+:
+\begin{DoxyItemize}
+\item View movies and theaters
+\item View and manage seat availability
+\item Book and cancel seats using session-\/based tracking 
+\end{DoxyItemize}
