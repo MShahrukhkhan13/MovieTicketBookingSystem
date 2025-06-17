@@ -29,6 +29,7 @@ It also manages session IDs for secure seat booking and cancellation.
 #include <chrono>
 
 using json = nlohmann::json;
+std::mutex sessionMutex;
 
 /**
  * @brief Generates a random alphanumeric session ID.
@@ -66,21 +67,27 @@ int main() {
      *
      * Returns a list of movies along with a new session ID.
      */
-    svr.Get("/movies", [&](const httplib::Request&, httplib::Response& res) {
-        json response;
-        response["movies"] = json::array();
+    svr.Get("/movies", [&](const httplib::Request& req, httplib::Response& res) {
+        std::string sessionId;
 
-        for (const auto& movie : service.viewMovies()) {
-            response["movies"].push_back({
-                {"id", movie.id},
-                {"title", movie.title}
-                });
+        // Check for existing session
+        auto it = req.headers.find("X-Session-Id");
+        {
+            std::lock_guard<std::mutex> lock(sessionMutex);
+            if (it != req.headers.end() && validSessions.count(it->second)) {
+                sessionId = it->second;
+            }
+            else {
+                sessionId = generateSessionId();
+                validSessions.insert(sessionId);
+            }
         }
 
-        std::string sessionId = generateSessionId();
-        validSessions.insert(sessionId);
+        json response;
+        for (const auto& movie : service.viewMovies()) {
+            response["movies"].push_back({ {"id", movie.id}, {"title", movie.title} });
+        }
         response["sessionId"] = sessionId;
-
         res.set_content(response.dump(), "application/json");
         });
 

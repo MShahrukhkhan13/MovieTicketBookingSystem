@@ -13,6 +13,9 @@ ApiClient::ApiClient(QObject* parent)
 void ApiClient::fetchMovies()
 {
     QNetworkRequest request(QUrl("http://localhost:8080/movies"));
+    if (!sessionId.isEmpty()) {
+        request.setRawHeader("X-Session-Id", sessionId.toUtf8());
+    }
     networkManager->get(request);
 }
 
@@ -84,6 +87,10 @@ void ApiClient::onReplyFinished(QNetworkReply* reply)
         if (jsonDoc.isObject()) {
             QVariantList movieList;
             auto obj = jsonDoc.object();
+
+            if (obj.contains("sessionId"))
+                sessionId = obj["sessionId"].toString();
+
             if (obj.contains("movies") && obj["movies"].isArray()) {
                 for (const QJsonValue &value : obj["movies"].toArray()) {
                     if (value.isObject())
